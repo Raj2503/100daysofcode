@@ -2,26 +2,28 @@
 #define ll long long int
 using namespace std;
 
-ll dp[4020][4020];
-ll pref[4020];
+ll dx[4040][4040];
+ll pre[4040];
 
-ll dfn(ll idx, ll taken, ll n, ll k, ll a[])
+ll dext(ll x, ll chosen, ll n, ll k, ll a[])
 {
-    if (taken >= k && (pref[idx] - taken >= k))
+    if (chosen >= k && (pre[x] - chosen >= k))
         return 0;
-    else if (idx >= n)
+    else if (x >= n)
         return 1e10;
-    else if (dp[idx][taken] != -1)
-        return dp[idx][taken];
+    else if (dx[x][chosen] != -1)
+        return dx[x][chosen];
 
-    ll c1 = dfn(idx + 1, min(taken + a[idx], pref[idx] - taken), n, k, a);
-    ll c2 = dfn(idx + 1, min(pref[idx] - taken + a[idx], taken), n, k, a);
+    ll choice1 = dext(x + 1, min(chosen + a[x], pre[x] - chosen), n, k, a);
+    ll choice2 = dext(x + 1, min(pre[x] - chosen + a[x], chosen), n, k, a);
 
-    return dp[idx][taken] = 1 + min(c1, c2);
+    return dx[x][chosen] = 1 + min(choice1, choice2);
 }
 
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     ll t;
     cin >> t;
     while (t--)
@@ -34,27 +36,27 @@ int main()
             cin >> a[i];
 
         if (n == 1)
-            cout << -1 << endl;
+            cout << -1 << "\n";
         else
         {
-            sort(a, a + n, greater<int>());
+            sort(a, a + n, greater<ll>());
 
             for (i = 0; i <= n + 10; i++)
             {
-                pref[i] = 0;
+                pre[i] = 0;
                 for (j = 0; j <= k + 10; j++)
-                    dp[i][j] = -1;
+                    dx[i][j] = -1;
             }
 
             for (i = 1; i <= n; i++)
-                pref[i] = pref[i - 1] + a[i - 1];
+                pre[i] = pre[i - 1] + a[i - 1];
 
-            ll ans = dfn(0, 0, n, k, a);
+            ll final = dext(0, 0, n, k, a);
 
-            if(ans>1e9)
-            cout<<-1<<endl;
-            else 
-            cout<<ans<<endl;
+            if (final > 1e9)
+                cout << -1 << "\n";
+            else
+                cout << final << "\n";
         }
     }
     return 0;

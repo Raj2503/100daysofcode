@@ -74,7 +74,7 @@ int main()
     //         array[x] = temp;
     //     }
     // }
-
+    if(n>4)
     swap(array[low],array[high-1]);
     // cout<<array[low]<<" "<<array[mid]<<" "<<array[high]<<endl;
 

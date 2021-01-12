@@ -1,26 +1,23 @@
-
 for t in range(int(input())):
 
     n, m = map(int, input().split())
+
     a = list(map(int, input().split()))
     b = list(map(int, input().split()))
 
     i = 0
-    possible = True
-    a.sort()
-    b.sort()
+    isPossible = True
     while sum(a) <= sum(b):
-
-        if a[i] < b[-1-i]:
-            temp = b[-1-i]
-            b[-1-i] = a[i]
-            a[i] = temp
-
+        a.sort()
+        b.sort()
+        if a[0] < b[-1]:
+            x = a[0]
+            a[0] = b[-1]
+            b[-1] = x
             i += 1
         else:
-            possible = False
+            isPossible = False
+            print(-1)
             break
-    if possible == True:
+    if isPossible == True:
         print(i)
-    else:
-        print(-1)
