@@ -4,6 +4,7 @@ using namespace std;
 #define MAX 1000
 
 int maxArea(int M[MAX][MAX], int n, int m);
+
 int main()
 {
     int T;
