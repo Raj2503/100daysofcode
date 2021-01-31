@@ -1,0 +1,54 @@
+Test 1 Failed
+
+Input 1: 
+4
+8
+0 0 3 1 1 1 1 2
+2
+1 1
+2
+2 2
+2
+0 1
+
+
+Expected Output : 
+YES
+RRLLLLRL
+YES
+RL
+YES
+RL
+NO
+
+
+Obtained Output : 
+1
+1
+1
+1
+
+
+________________________________________________________
+
+Test 2 Failed
+
+Input 2: 
+4
+1 5
+4 3
+8 8
+8 17
+
+Expected Output : 
+
+
+Obtained Output : 
+5
+1
+8
+3
+
+
+________________________________________________________
+

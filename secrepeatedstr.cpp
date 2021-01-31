@@ -10,24 +10,27 @@ public:
     string secFrequent(string arr[], int n)
     {
         //code here.
-        int num = 0, max = INT_MIN;
+        int num = 0, maxlar = INT_MIN;
         unordered_map<string, int> freq;
         for (int i = 0; i < n; i++)
         {
             freq[arr[i]]++;
 
-            if (freq[arr[i]] > max)
-                max = freq[arr[i]];
+            maxlar = max(freq[arr[i]], maxlar);
         }
-        int min = INT_MAX;
+        int minsec = INT_MIN;
         string result;
 
         for (auto i : freq)
         {
-            if (i.second < min)
+            if (i.second != maxlar)
             {
+                minsec = max(minsec, i.second);
+                if (minsec == i.second)
+                    result = i.first;
             }
         }
+        return result;
     }
 };
 
